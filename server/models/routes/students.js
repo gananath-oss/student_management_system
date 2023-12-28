@@ -73,4 +73,16 @@ router.route("/delete/:id").delete(async (req, res) => {
     });
 });
 
+// Get one record
+router.route("/:id").get(async (req, res) => {
+  const studentId = req.params.id;
+  const student = await Student.findById(studentId)
+    .then(() => {
+      res.status(200).send({ status: "data fetch", student: student });
+    })
+    .catch((err) => {
+      res.status(500).send({ status: "Error with get student", error: err });
+    });
+});
+
 module.exports = router;
