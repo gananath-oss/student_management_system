@@ -49,7 +49,7 @@ router.route("/update/:id").put(async (req, res) => {
 
   const update = await Student.findByIdAndUpdate(studentId, updateStudent)
     .then(() => {
-      res.status(200).send({ status: "Student updated!", student: update });
+      res.status(200).send({ status: "Student updated!" });
     })
     .catch((err) => {
       console.error(err);
