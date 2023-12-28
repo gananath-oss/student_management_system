@@ -25,4 +25,15 @@ router.route("/add").post((req, res) => {
     });
 });
 
+// Read
+router.route("/").get((req, res) => {
+  Student.find()
+    .then((students) => {
+      res.json(students);
+    })
+    .catch((err) => {
+      console.error(err);
+    });
+});
+
 module.exports = router;
