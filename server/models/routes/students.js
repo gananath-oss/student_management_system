@@ -59,4 +59,18 @@ router.route("/update/:id").put(async (req, res) => {
     });
 });
 
+// Delete
+router.route("/delete/:id").delete(async (req, res) => {
+  const studentId = req.params.id;
+  await Student.findByIdAndDelete(studentId)
+    .then(() => {
+      res.status(200).send({ status: "Student deleted successfully!" });
+    })
+    .catch((err) => {
+      res
+        .status(500)
+        .send({ status: "Error with delete student", error: err.message });
+    });
+});
+
 module.exports = router;
